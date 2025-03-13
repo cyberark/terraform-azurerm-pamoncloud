@@ -1,5 +1,5 @@
 resource "azurerm_key_vault" "primary_vault_key_vault" {
-  name                = var.key_vault_name
+  name                = "${var.key_vault_name}-${random_string.unique_suffix.result}"
   location            = var.location
   resource_group_name = var.resource_group_name
   tenant_id           = data.azurerm_virtual_machine.vault_vm_data.identity[0].tenant_id

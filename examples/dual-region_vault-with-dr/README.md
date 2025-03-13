@@ -51,6 +51,10 @@ Note that this example creates resources which can cost money. Run `terraform de
 | <a name="input_vault_dr_password"></a> [vault\_dr\_password](#input\_vault\_dr\_password) | The disaster recovery password for the vault. |
 | <a name="input_vault_dr_secret"></a> [vault\_dr\_secret](#input\_vault\_dr\_secret) | The disaster recovery secret for the vault. |
 | <a name="input_storage_account_access_key"></a> [storage\_account\_access\_key](#input\_storage\_account\_access\_key) | The access key for the storage account. |
+| <a name="input_storage_account_name"></a> [storage\_account\_name](#input\_storage\_account\_name) | The storage account name which hosts the Vault license and recovery key . |
+| <a name="input_container_name"></a> [container\_name](#input\_container\_name) | The container name which hosts the Vault license and recovery key . |
+| <a name="input_vault_image_id"></a> [vault\_image\_id](#input\_vault\_image\_id) | The Vault image ID . |
+| <a name="input_vault_dr_image_id"></a> [vault\_dr\_image\_id](#input\_vault\_dr\_image\_id) | The Vault DR image ID . |
 
 ## Outputs
 

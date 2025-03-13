@@ -6,7 +6,7 @@ locals {
   # Component locals:
   component_vm_name     = "PAMonCloud-TF-${var.component}"
   component_vm_hostname = lower(var.component)
-  component_vm_size     = "Standard_D8s_v3"
+  component_vm_size     = "Standard_D4s_v3"
 }
 
 provider "azurerm" {

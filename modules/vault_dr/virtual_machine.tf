@@ -18,14 +18,14 @@ resource "azurerm_virtual_machine" "vault_dr_vm" {
   }
 
   storage_os_disk {
-    name              = "${var.vm_name}-osdisk-${random_uuid.random_suffix.id}"
+    name              = "${var.vm_name}-osdisk-${random_string.unique_suffix.result}"
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Premium_LRS"
   }
 
   storage_data_disk {
-    name              = "${var.vm_name}-datadisk-${random_uuid.random_suffix.id}"
+    name              = "${var.vm_name}-datadisk-${random_string.unique_suffix.result}"
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Premium_LRS"

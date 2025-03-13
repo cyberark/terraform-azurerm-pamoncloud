@@ -16,9 +16,7 @@ locals {
   vault_vm_hostname              = "vault"
   vault_vm_size                  = "Standard_D8s_v3"
   vault_availability_zone        = ["1"]
-  vault_key_vault_name           = "primaryvault-key-vault"
-  storage_account_name           = "pamoncloudstorageacc"
-  container_name                 = "pamoncloud-container"
+  vault_key_vault_name           = "PrimaryKeyVault"
   vault_license_file             = "license.xml"
   vault_recovery_public_key_file = "recpub.key"
 
@@ -26,7 +24,7 @@ locals {
   vaultdr_vm_name        = "PAMonCloud-TF-VaultDR"
   vaultdr_vm_hostname    = "vault-dr"
   vaultdr_vm_size        = "Standard_D8s_v3"
-  vaultdr_key_vault_name = "vault-dr-key-vault"
+  vaultdr_key_vault_name = "DRKeyVault"
 }
 
 provider "azurerm" {
@@ -67,9 +65,9 @@ module "vault_vm" {
   vm_admin_user              = local.vm_admin_user
   vm_admin_password          = var.vm_admin_password
   image_id                   = var.vault_image_id
-  storage_account_name       = local.storage_account_name
+  storage_account_name       = var.storage_account_name
   storage_account_access_key = var.storage_account_access_key
-  container_name             = local.container_name
+  container_name             = var.container_name
   license_file               = local.vault_license_file
   recovery_public_key_file   = local.vault_recovery_public_key_file
   key_vault_name             = local.vault_key_vault_name
