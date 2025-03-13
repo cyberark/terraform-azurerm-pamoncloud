@@ -1,5 +1,5 @@
 resource "azurerm_network_interface" "vault_dr_network_interface" {
-  name                = "${var.vm_name}-${random_uuid.random_suffix.id}"
+  name                = "${var.vm_name}-${random_string.unique_suffix.result}"
   location            = var.location
   resource_group_name = var.resource_group_name
 

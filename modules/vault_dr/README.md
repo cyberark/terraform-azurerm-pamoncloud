@@ -73,7 +73,7 @@ Example: `terraform state show 'module.vault_dr_vm.azurerm_key_vault.vault_dr_ke
 #### **Miscellaneous**
 | Resource                    | Description                                    |
 |-----------------------------|------------------------------------------------|
-| `random_uuid.random_suffix` | A randomly generated suffix for unique naming. |
+| `random_string.unique_suffix` | A randomly generated suffix for unique naming. |
 
 ## Inputs
 
@@ -81,7 +81,7 @@ Example: `terraform state show 'module.vault_dr_vm.azurerm_key_vault.vault_dr_ke
 |------|-------------|------|---------|:--------:|
 | <a name="input_vm_name"></a> [vm\_name](#input\_vm\_name) | The name of the VM. | `string` | `null` | yes |
 | <a name="input_vm_hostname"></a> [vm\_hostname](#input\_vm\_hostname) | The hostname for the VM. Must be 3 to 15 characters long, contain at least one letter, and must not start or end with a hyphen. | `string` | `null` | yes |
-| <a name="input_vm_size"></a> [vm\_size](#input\_vm\_size) | The size of the VM (e.g., Standard_D8s_v3). Valid options include: Standard_D8s_v3, Standard_D16s_v3, Standard_D32s_v3, Standard_D64s_v3, Standard_F8s_v2, Standard_F16s_v2, Standard_F32s_v2. | `string` | `null` | yes |
+| <a name="input_vm_size"></a> [vm\_size](#input\_vm\_size) | The size of the VM. | `string` | `null` | yes |
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | The name of the resource group. Must be between 1 and 90 characters long, start with a letter, and contain only alphanumeric characters, underscores, hyphens, or parentheses. | `string` | `null` | yes |
 | <a name="input_location"></a> [location](#input\_location) | The location to deploy the VM. Must be a valid Azure region name matching lowercase letters, alphanumerics, and hyphens only. | `string` | `null` | yes |
 | <a name="input_availability_zone"></a> [availability\_zone](#input\_availability\_zone) | The availability zone of the VM. Can be an empty list or a list with values "1", "2", or "3". | `list(string)` | `["2"]` | no |

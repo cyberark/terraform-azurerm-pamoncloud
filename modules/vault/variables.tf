@@ -15,10 +15,6 @@ variable "vm_hostname" {
 variable "vm_size" {
   description = "The size of the VM."
   type        = string
-  validation {
-    condition     = contains(["Standard_D8s_v3", "Standard_D16s_v3", "Standard_D32s_v3", "Standard_D64s_v3", "Standard_D4s_v3", "Standard_D8s_v3", "Standard_D16s_v3", "Standard_D32s_v3", "Standard_F8s_v2", "Standard_F16s_v2", "Standard_F32s_v2"], var.vm_size)
-    error_message = "Invalid instance size. Allowed sizes are: Standard_D8s_v3, Standard_D16s_v3, Standard_D32s_v3, Standard_D64s_v3, Standard_D4s_v3, Standard_D8s_v3, Standard_D16s_v3, Standard_D32s_v3, Standard_F8s_v2, Standard_F16s_v2, Standard_F32s_v2"
-  }
 }
 
 variable "resource_group_name" {
@@ -216,15 +212,14 @@ variable "recovery_public_key_file" {
 variable "key_vault_name" {
   description = "The key vault name."
   type        = string
+  default = "PrimaryKeyVault"
   validation {
-    condition     = can(regex("^[a-z0-9][a-z0-9-]{1,22}[a-z0-9]$", var.key_vault_name))
+    condition     = can(regex("^[a-zA-Z0-9]{1,15}$", var.key_vault_name))
     error_message = <<EOF
-    The key vault name must be:
-      - Globally unique.
+    The key vault name must meet the following requirements:
       - Between 3 and 24 characters long.
-      - Contain only alphanumeric characters (a-z, 0-9) and hyphens (-).
-      - Start with a lowercase letter or number.
-      - Must not end with a hyphen (-).
+      - Contain only alphanumeric characters (a-z, A-Z, 0-9) and hyphens (-).
+      - Begin with a letter, end with a letter or digit.
     EOF
   }
 }

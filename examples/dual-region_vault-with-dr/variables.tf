@@ -34,6 +34,18 @@ variable "storage_account_access_key" {
   sensitive   = true
 }
 
+variable "storage_account_name" {
+  description = "The name of the storage account which hosts the container with the Vault license and recovery key."
+  type        = string
+  default     = ""
+}
+
+variable "container_name" {
+  description = "The name of the container in the storage account where Vault license and recovery key are stored."
+  type        = string
+  default     = ""
+}
+
 variable "vault_image_id" {
   description = "Image ID to use for the VM deployment."
   type        = string

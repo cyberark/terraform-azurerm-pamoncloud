@@ -1,4 +1,7 @@
-resource "random_uuid" "random_suffix" {
+resource "random_string" "unique_suffix" {
+  length  = 8
+  upper   = false
+  special = false
 }
 
 data "azurerm_virtual_machine" "vault_vm_data" {

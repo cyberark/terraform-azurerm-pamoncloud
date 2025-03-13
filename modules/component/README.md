@@ -83,7 +83,7 @@ Example: `terraform state show 'module.component_vm.azurerm_network_interface.co
 |------|-------------|------|---------|:--------:|
 | <a name="input_vm_name"></a> [vm\_name](#input\_vm\_name) | The name of the virtual machine. | `string` | `null` | yes |
 | <a name="input_vm_hostname"></a> [vm\_hostname](#input\_vm\_hostname) | The hostname of the virtual machine. Must be 3 to 15 characters long, contain at least one letter, and must not start or end with a hyphen.  | `string` | `null` | yes |
-| <a name="input_vm_size"></a> [vm\_size](#input\_vm\_size) | The size of the virtual machine (e.g., Standard_D8s_v3). | `string` | `null` | yes |
+| <a name="input_vm_size"></a> [vm\_size](#input\_vm\_size) | The size of the virtual machine. | `string` | `null` | yes |
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | The name of the resource group. Must be between 1 and 90 characters long, start with a letter and contain only alphanumeric characters, underscores, hyphens or parentheses | `string` | `null` | yes |
 | <a name="input_location"></a> [location](#input\_location) | The Azure region where the virtual machine will be deployed , lowercase letters only. | `string` | `null` | yes |
 | <a name="input_availability_zone"></a> [availability\_zone](#input\_availability\_zone) | The availability zone for the virtual machine. | `list(string)` | `null` | yes |
