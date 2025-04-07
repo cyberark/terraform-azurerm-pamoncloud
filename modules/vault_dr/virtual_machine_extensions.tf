@@ -8,7 +8,7 @@ resource "azurerm_virtual_machine_extension" "registration_script" {
 
   settings = <<SETTINGS
  {
-  "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File \"C://CyberArk//HardeningActivation.ps1\" -PrimaryOrDR DR -PrimaryVaultIP ${var.primary_vault_private_ip} -DRPassword ${var.vault_dr_password} -VKMName ${var.key_vault_name} -Secret ${var.vault_dr_secret}"
+  "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File \"C://CyberArk//HardeningActivation.ps1\" -PrimaryOrDR DR -PrimaryVaultIP ${var.primary_vault_private_ip} -DRPassword ${var.vault_dr_password} -VKMName ${resource.azurerm_key_vault.vault_dr_key_vault.name} -Secret ${var.vault_dr_secret}"
  }
 SETTINGS
 

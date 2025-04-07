@@ -21,7 +21,7 @@ variable "resource_group_name" {
   description = "The name of the RG."
   type        = string
   validation {
-    condition     = can(regex("^[a-zA-Z][a-zA-Z0-9-_()]{1,89}$", var.resource_group_name))
+    condition     = can(regex("^[a-zA-Z][a-zA-Z0-9-_.()]{1,89}$", var.resource_group_name))
     error_message = <<-EOF
       The resource group name must meet the following requirements:
         - Be between 1 and 90 characters long.
@@ -64,7 +64,7 @@ variable "subnet_id" {
   type        = string
   validation {
     condition = can(
-      regex("^/subscriptions/[0-9a-fA-F-]+/resourceGroups/[a-zA-Z0-9-_()]+/providers/Microsoft.Network/virtualNetworks/[a-zA-Z0-9-_()]+/subnets/[a-zA-Z0-9-_()]+$", var.subnet_id)
+      regex("^/subscriptions/[0-9a-fA-F-]+/resourceGroups/[a-zA-Z0-9-_.()]+/providers/Microsoft.Network/virtualNetworks/[a-zA-Z0-9-_()]+/subnets/[a-zA-Z0-9-_()]+$", var.subnet_id)
     )
     error_message = <<-EOF
       The provided subnet ID must follow the Azure subnet ID format:
