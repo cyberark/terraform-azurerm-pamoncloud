@@ -2,7 +2,7 @@ variable "resource_group_name" {
   description = "The name of the RG."
   type        = string
   validation {
-    condition     = can(regex("^[a-zA-Z][a-zA-Z0-9-_()]{1,89}$", var.resource_group_name))
+    condition     = can(regex("^[a-zA-Z][a-zA-Z0-9-_.()]{1,89}$", var.resource_group_name))
     error_message = <<-EOF
       The resource group name must meet the following requirements:
         - Be between 1 and 90 characters long.
