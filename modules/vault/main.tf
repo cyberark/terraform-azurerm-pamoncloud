@@ -1,3 +1,8 @@
+locals {
+  vm_role_assignment_role = "Storage Account Contributor"
+  storage_account_name    = (regex("storageAccounts/([^/]+)", var.storage_account_id))[0]
+}
+
 resource "random_string" "unique_suffix" {
   length  = 8
   upper   = false

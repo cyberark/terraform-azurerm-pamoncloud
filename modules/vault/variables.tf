@@ -25,7 +25,7 @@ variable "resource_group_name" {
     error_message = <<-EOF
       The resource group name must meet the following requirements:
         - Be between 1 and 90 characters long.
-        - Start with a letter
+        - Start with a letter.
         - Contain only alphanumeric characters, underscores (_), hyphens (-), or parentheses (()).
     EOF
   }
@@ -138,32 +138,16 @@ variable "image_id" {
   }
 }
 
-variable "storage_account_name" {
-  description = "The name of the storage account which hosts the container with the Vault license and recovery key."
+variable "storage_account_id" {
+  description = "The resource ID of the storage account which hosts the container with the Vault license and recovery key."
   type        = string
   validation {
-    condition     = can(regex("^[a-z][a-z0-9]{2,23}$", var.storage_account_name))
+    condition = can(
+      regex("^/subscriptions/[0-9a-fA-F-]{36}/resourceGroups/[a-zA-Z0-9_.-]+/providers/Microsoft.Storage/storageAccounts/[a-z][a-z0-9]{2,23}$", var.storage_account_id)
+    )
     error_message = <<-EOF
-      The storage account name must meet the following requirements:
-        - Be between 3 and 24 characters long.
-        - Contain only lowercase letters (a-z) and numbers (0-9).
-        - Start with a letter.
-        - Must not contain uppercase letters, hyphens, underscores, or special characters.
-    EOF
-  }
-}
-
-variable "storage_account_access_key" {
-  description = "The access key for the storage account that contains the Vault license and recovery key."
-  type        = string
-  sensitive   = true
-
-  validation {
-    condition     = can(regex("^[a-zA-Z0-9+/=]+$", var.storage_account_access_key))
-    error_message = <<EOF
-      The storage account access key must meet the following requirements:
-        - Contain only Base64 characters: uppercase letters (A-Z), lowercase letters (a-z), numbers (0-9), and the symbols +, /, =.
-        - Must not contain spaces or invalid characters.
+      The storage_account_id must be a valid Azure Storage account resource ID in the following format:
+      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{storageAccountName}
     EOF
   }
 }
@@ -173,7 +157,7 @@ variable "container_name" {
   type        = string
   validation {
     condition     = can(regex("^.{3,36}$", var.container_name))
-    error_message = "Password must be between 3 and 63 characters long."
+    error_message = "Must be 3 to 63 characters long."
   }
   validation {
     condition     = can(regex("^[a-z0-9-]+$", var.container_name))
@@ -212,7 +196,7 @@ variable "recovery_public_key_file" {
 variable "key_vault_name" {
   description = "The key vault name."
   type        = string
-  default = "PrimaryKeyVault"
+  default     = "PrimaryKeyVault"
   validation {
     condition     = can(regex("^[a-zA-Z0-9]{1,15}$", var.key_vault_name))
     error_message = <<EOF

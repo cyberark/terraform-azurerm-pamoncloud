@@ -50,12 +50,11 @@ Note that this example creates resources which can cost money. Run `terraform de
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | The name of the resource group where the component is deployed. |
 | <a name="input_vault_admin_password"></a> [vault\_admin\_password](#input\_vault\_admin\_password) | The administrator password for the vault. (Sensitive) |
 | <a name="input_primary_vault_private_ip"></a> [primary\_vault\_private\_ip](#input\_primary\_vault\_private\_ip) | The private IP address of the primary vault. (Sensitive) |
-| <a name="input_vault_dr_private_ip"></a> [vault\_dr\_private\_ip](#input\_vault\_dr\_private\_ip) | The IP address of the Vault DR virtual machine. Required only when the component is PTA. |
+| <a name="input_vault_dr_private_ip"></a> [vault\_dr\_private\_ip](#input\_vault\_dr\_private\_ip) | The IP address of the Vault DR virtual machine. |
 | <a name="input_pvwa_vm_hostname"></a> [pvwa\_vm\_hostname](#input\_pvwa\_vm\_hostname) | The name of the PVWA virtual machine. Required only when the component is PTA. |
 | <a name="input_component_vm_admin_password"></a> [component\_vm\_admin\_password](#input\_component\_vm\_admin\_password) | The administrator password for the component virtual machine. (Sensitive) |
 | <a name="input_component_subnet_id"></a> [component\_subnet\_id](#input\_component\_subnet\_id) | The ID of the subnet in which the component virtual machine will be deployed. |
 | <a name="input_component_location"></a> [component\_location](#input\_component\_location) | The location of the component. |
-| <a name="input_component_availability_zone"></a> [component\_availability\_zone](#input\_component\_availability\_zone) | The availability zone of the component. |
 | <a name="input_component_image_id"></a> [component\_image\_id](#input\_component\_image\_id) | The image ID for the component virtual machine. |
 
 ## Outputs

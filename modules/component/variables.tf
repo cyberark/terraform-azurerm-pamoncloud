@@ -173,11 +173,11 @@ variable "primary_vault_private_ip" {
 }
 
 variable "vault_dr_private_ip" {
-  description = "The private IP address of the DR Vault (if exists)."
+  description = "The private IP address of the Vault DR (if exists)."
   type        = string
   default     = ""
   validation {
-    condition     = can(regex("^(?:$|(10\\.(?:[0-9]{1,3}\\.){2}[0-9]{1,3}|172\\.(?:1[6-9]|2[0-9]|3[0-1])\\.(?:[0-9]{1,3}\\.)[0-9]{1,3}|192\\.168\\.(?:[0-9]{1,3}\\.)[0-9]{1,3}))$", var.vault_dr_private_ip))
+    condition     = can(regex("^$|^(10|172\\.(1[6-9]|2[0-9]|3[0-1])|192\\.168)\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})(\\s*,\\s*(10|172\\.(1[6-9]|2[0-9]|3[0-1])|192\\.168)\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3}))*$", var.vault_dr_private_ip))
     error_message = <<-EOF
       The private IP address must not include invalid characters or out-of-range numbers.
       Valid private IP ranges:

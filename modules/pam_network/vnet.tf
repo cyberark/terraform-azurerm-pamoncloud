@@ -26,7 +26,7 @@ module "vnet" {
     "PTA-Subnet-${each.key}"
   ]
   subnet_service_endpoints = {
-    "Vault-Subnet-${each.key}" = ["Microsoft.KeyVault"]
+    "Vault-Subnet-${each.key}" = ["Microsoft.KeyVault", "Microsoft.Storage"]
   }
 
   tags = {

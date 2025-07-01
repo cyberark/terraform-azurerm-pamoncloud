@@ -28,16 +28,9 @@ variable "vault_dr_secret" {
   sensitive   = true
 }
 
-variable "storage_account_access_key" {
-  description = "The access key for the storage account that contains the Vault license and recovery key."
+variable "storage_account_id" {
+  description = "The resource ID of the storage account which hosts the container with the Vault license and recovery key."
   type        = string
-  sensitive   = true
-}
-
-variable "storage_account_name" {
-  description = "The name of the storage account which hosts the container with the Vault license and recovery key."
-  type        = string
-  default     = ""
 }
 
 variable "container_name" {

@@ -21,8 +21,7 @@ module "vault_vm" {
     vm_admin_user                   = "azureadmin"
     vm_admin_password               = "VaultAdminPassword"
     image_id                        = "/subscriptions/12345678-1234-5678-1234-567812345678/resourceGroups/PAM-Images/providers/Microsoft.Compute/images/Component-Image"
-    storage_account_name            = "StorageAccount"
-    storage_account_access_key      = "access-key"
+    storage_account_id              = "/subscriptions/12345678-1234-5678-1234-567812345678/resourceGroups/PAM-Images/providers/Microsoft.Storage/storageAccounts/StorageAccountName"
     container_name                  = "ContainerName"
     license_file                    = "license.xml"
     recovery_public_key_file        = "recpub.key"
@@ -95,8 +94,7 @@ Example: `terraform state show 'module.vault_vm.azurerm_key_vault.primary_vault_
 | <a name="input_vm_admin_user"></a> [vm\_admin\_user](#input\_vm\_admin\_user) | Admin username for the VM. Must only contain alphanumerics, underscores, periods, or hyphens. Reserved usernames such as Administrator, Guest, and System cannot be used. | `string` | `null` | yes |
 | <a name="input_vm_admin_password"></a> [vm\_admin\_password](#input\_vm\_admin\_password) | Admin password for the VM. Password must be between 12 and 123 characters long, must contain at least one uppercase letter, one lowercase letter, one number, and one special character. | `string` | `null` | yes |
 | <a name="input_image_id"></a> [image\_id](#input\_image\_id) | VM image ID. Must follow the Azure image resource ID format. | `string` | `null` | yes |
-| <a name="input_storage_account_name"></a> [storage\_account\_name](#input\_storage\_account\_name) | The name of the storage account which hosts the container with the Vault license and recovery key. Must adhere to Azure naming conventions. | `string` | `null` | yes |
-| <a name="input_storage_account_access_key"></a> [storage\_account\_access\_key](#input\_storage\_account\_access\_key) | The access key for the storage account that contains the Vault license and recovery key. Must contain only Base64 characters. | `string` | `null` | yes |
+| <a name="input_storage_account_id"></a> [storage\_account\_id](#input\_storage\_account\_id) | The ID of the storage account which hosts the container with the Vault license and recovery key. Must adhere to Azure naming conventions. | `string` | `null` | yes |
 | <a name="input_container_name"></a> [container\_name](#input\_container\_name) | The name of the container in the storage account where Vault license and recovery key are stored. Must follow Azure naming conventions. | `string` | `null` | yes |
 | <a name="input_license_file"></a> [license\_file](#input\_license\_file) | The name of the license file stored in the storage account container. | `string` | `"license.xml"` | no |
 | <a name="input_recovery_public_key_file"></a> [recovery\_public\_key\_file](#input\_recovery\_public\_key\_file) | The name of the recovery public key file stored in the storage account container. | `string` | `"recpub.key"` | no |

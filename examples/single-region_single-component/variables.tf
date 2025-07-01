@@ -21,7 +21,7 @@ variable "primary_vault_private_ip" {
 }
 
 variable "vault_dr_private_ip" {
-  description = "The private IP address of the DR Vault. (Required only when component is PTA)"
+  description = "The private IP address of the Vault DR."
   type        = string
   default     = ""
 }
@@ -46,11 +46,6 @@ variable "component_subnet_id" {
 variable "component_location" {
   description = "The location to deploy the VM."
   type        = string
-}
-
-variable "component_availability_zone" {
-  description = "The availability zone of the VM."
-  type        = list(string)
 }
 
 variable "component_image_id" {

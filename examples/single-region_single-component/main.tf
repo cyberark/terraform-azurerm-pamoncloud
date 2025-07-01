@@ -4,9 +4,10 @@ locals {
   vm_admin_user        = "azureadmin"
 
   # Component locals:
-  component_vm_name     = "PAMonCloud-TF-${var.component}"
-  component_vm_hostname = lower(var.component)
-  component_vm_size     = "Standard_D4s_v3"
+  component_vm_name           = "PAMonCloud-TF-${var.component}"
+  component_vm_hostname       = lower(var.component)
+  component_vm_size           = "Standard_D4s_v3"
+  component_availability_zone = ["1"]
 }
 
 provider "azurerm" {
@@ -24,7 +25,7 @@ module "component_vm" {
   vm_size                  = local.component_vm_size
   resource_group_name      = var.resource_group_name
   location                 = var.component_location
-  availability_zone        = var.component_availability_zone
+  availability_zone        = local.component_availability_zone
   subnet_id                = var.component_subnet_id
   vm_admin_user            = local.vm_admin_user
   vm_admin_password        = var.component_vm_admin_password
