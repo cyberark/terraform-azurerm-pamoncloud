@@ -156,6 +156,7 @@ module "pvwa_vm" {
   vault_admin_username     = local.vault_admin_username
   vault_admin_password     = var.vault_admin_password
   primary_vault_private_ip = module.vault_vm.private_ip
+  vault_dr_private_ip      = module.vault_dr_vm.private_ip
 
   depends_on = [module.vault_dr_vm]
 }
@@ -180,6 +181,7 @@ module "cpm_vm" {
   vault_admin_username     = local.vault_admin_username
   vault_admin_password     = var.vault_admin_password
   primary_vault_private_ip = module.vault_vm.private_ip
+  vault_dr_private_ip      = module.vault_dr_vm.private_ip
 
   depends_on = [module.pvwa_vm]
 }
@@ -204,6 +206,7 @@ module "psm_vm" {
   vault_admin_username     = local.vault_admin_username
   vault_admin_password     = var.vault_admin_password
   primary_vault_private_ip = module.vault_vm.private_ip
+  vault_dr_private_ip      = module.vault_dr_vm.private_ip
 
   depends_on = [module.cpm_vm]
 }
@@ -228,6 +231,7 @@ module "psmp_vm" {
   vault_admin_username     = local.vault_admin_username
   vault_admin_password     = var.vault_admin_password
   primary_vault_private_ip = module.vault_vm.private_ip
+  vault_dr_private_ip      = module.vault_dr_vm.private_ip
 
   depends_on = [module.cpm_vm]
 }
@@ -255,5 +259,5 @@ module "pta_vm" {
   pvwa_vm_hostname         = module.pvwa_vm.vm_hostname
   vault_dr_private_ip      = module.vault_dr_vm.private_ip
 
-  depends_on = [module.pvwa_vm]
+  depends_on = [module.psm_vm, module.psmp_vm]
 }

@@ -141,7 +141,7 @@ variable "image_id" {
 variable "key_vault_name" {
   description = "The key vault name."
   type        = string
-  default = "DRKeyVault"
+  default     = "DRKeyVault"
   validation {
     condition     = can(regex("^[a-zA-Z0-9]{1,15}$", var.key_vault_name))
     error_message = <<EOF
