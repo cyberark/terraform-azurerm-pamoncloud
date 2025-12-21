@@ -118,7 +118,7 @@ module "vault_dr_vm" {
   }
   vm_admin_user            = local.vm_admin_user
   vm_admin_password        = var.vm_admin_password
-  image_id                 = var.vault_dr_image_id
+  image_id                 = var.vault_image_id
   key_vault_name           = local.vaultdr_key_vault_name
   vault_dr_password        = var.vault_dr_password
   vault_dr_secret          = var.vault_dr_secret

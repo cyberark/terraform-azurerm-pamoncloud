@@ -1,6 +1,11 @@
 # CyberArk PAMonCloud Terraform Package Release Notes
 The PAMonCloud Terraform package includes CyberArk PAM product implementations, delivered as Terraform modules and examples to automate deployment on Azure. This solution provides enhanced flexibility and scalability for deploying core PAM components and associated infrastructure.
 
+## [PAMonCloud Terraform on Azure v15.0] (15.12.2025)
+
+### Removed
+- The vault_dr_image_id variable was removed from examples/single-region_complete-pam.
+
 ## [PAMonCloud Terraform on Azure v14.6] (1.7.2025)
 
 ### Added
