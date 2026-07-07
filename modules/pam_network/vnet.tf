@@ -15,7 +15,8 @@ module "vnet" {
     cidrsubnet(each.value, 8, 3),
     cidrsubnet(each.value, 8, 4),
     cidrsubnet(each.value, 8, 5),
-    cidrsubnet(each.value, 8, 6)
+    cidrsubnet(each.value, 8, 6),
+    cidrsubnet(each.value, 8, 7)
   ]
   subnet_names = [
     "Vault-Subnet-${each.key}",
@@ -23,7 +24,8 @@ module "vnet" {
     "CPM-Subnet-${each.key}",
     "PSM-Subnet-${each.key}",
     "PSMP-Subnet-${each.key}",
-    "PTA-Subnet-${each.key}"
+    "PTA-Subnet-${each.key}",
+    "Public-Subnet-${each.key}"
   ]
   subnet_service_endpoints = {
     "Vault-Subnet-${each.key}" = ["Microsoft.KeyVault", "Microsoft.Storage"]

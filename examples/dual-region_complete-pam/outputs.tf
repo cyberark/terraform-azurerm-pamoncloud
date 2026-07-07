@@ -36,6 +36,27 @@ output "pta_subnet_id" {
   value = module.pam-network.pta_subnet_id
 }
 
+output "public_subnet_id" {
+  value = module.pam-network.public_subnet_id
+}
+
+# bastion_vm outputs (when var.deploy_bastion is true)
+
+output "bastion_private_ip" {
+  value       = var.deploy_bastion ? module.bastion[0].private_ip : null
+  description = "Private IP of the Bastion VM when deploy_bastion is true."
+}
+
+output "bastion_public_ip" {
+  value       = var.deploy_bastion ? module.bastion[0].public_ip : null
+  description = "Public IP of the Bastion VM when deploy_bastion is true (use for RDP)."
+}
+
+output "bastion_vm_name" {
+  value       = var.deploy_bastion ? module.bastion[0].vm_name : null
+  description = "Name of the Bastion VM when deploy_bastion is true."
+}
+
 # vault_vm outputs
 
 output "vault_vm_private_ip" {

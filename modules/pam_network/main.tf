@@ -5,7 +5,8 @@ locals {
     "PVWA",
     "PSM",
     "PSMP",
-    "PTA"
+    "PTA",
+    "Public"
   ]
 
   location_to_nsg_rules_product = setproduct(local.nsg_rules_tuple, local.vnets_data.vnet_location)

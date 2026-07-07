@@ -54,3 +54,11 @@ output "pta_subnet_id" {
     peered  = length(local.vnets_data.vnet_location) > 1 ? data.azurerm_subnet.subnet_map["PTA-Subnet-${local.vnets_data.vnet_location[1]}"].id : null
   }
 }
+
+output "public_subnet_id" {
+  description = "Subnet ID of the Public subnet (Bastion VM is deployed here when deploy_bastion is true)."
+  value = {
+    primary = data.azurerm_subnet.subnet_map["Public-Subnet-${local.vnets_data.vnet_location[0]}"].id
+    peered  = length(local.vnets_data.vnet_location) > 1 ? data.azurerm_subnet.subnet_map["Public-Subnet-${local.vnets_data.vnet_location[1]}"].id : null
+  }
+}

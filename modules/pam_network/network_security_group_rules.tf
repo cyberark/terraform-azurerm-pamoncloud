@@ -14,6 +14,25 @@ resource "azurerm_network_security_rule" "nsg_rules_per_location" {
   destination_address_prefix  = (element(local.nsg_rules_to_deploy_tuple[*], count.index))[0].destination_address_prefix
 }
 
+resource "azurerm_network_security_rule" "bastion_rules" {
+  for_each = { for rule in local.bastion_nsg_rules : rule.name => rule }
+
+  resource_group_name         = var.resource_group_name
+  network_security_group_name = "Public-NSG-${var.vnet_location_primary}"
+  name                        = each.value.name
+  protocol                    = each.value.protocol
+  priority                    = each.value.priority
+  direction                   = each.value.direction
+  access                      = each.value.access
+  source_port_range           = each.value.source_port_range
+  destination_port_range      = each.value.destination_port_range
+  source_address_prefix       = each.value.source_address_prefix
+  source_address_prefixes     = each.value.source_address_prefixes
+  destination_address_prefix  = each.value.destination_address_prefix
+
+  depends_on = [module.network-security-group]
+}
+
 locals {
   nsg_rules_tuple = [
     {
@@ -905,6 +924,33 @@ locals {
       "direction"                  = "Outbound"
     }
   ]
+
+  bastion_nsg_rules = length(var.bastion_access_cidr) > 0 ? [
+    {
+      name                       = "AllowRDPBastionAccessIn"
+      protocol                   = "Tcp"
+      priority                   = 100
+      direction                  = "Inbound"
+      access                     = "Allow"
+      source_port_range          = "*"
+      destination_port_range     = "3389"
+      source_address_prefix      = tostring(null)
+      source_address_prefixes    = var.bastion_access_cidr
+      destination_address_prefix = "*"
+    },
+    {
+      name                       = "AllowBastionEgressAll"
+      protocol                   = "*"
+      priority                   = 100
+      direction                  = "Outbound"
+      access                     = "Allow"
+      source_port_range          = "*"
+      destination_port_range     = "*"
+      source_address_prefix      = "*"
+      source_address_prefixes    = tolist(null)
+      destination_address_prefix = "*"
+    }
+  ] : []
 
   nsg_vnet_peering_rules_tuple = try(resource.azurerm_virtual_network_peering.peering[0].name, null) == null ? null : [
     {

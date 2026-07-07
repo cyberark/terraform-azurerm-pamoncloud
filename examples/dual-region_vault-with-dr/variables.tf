@@ -1,3 +1,15 @@
+variable "deploy_bastion" {
+  description = "When true, deploys a Windows Server Bastion VM in the Public subnet for administrative access."
+  type        = bool
+  default     = false
+}
+
+variable "bastion_access_cidr" {
+  description = "List of allowed IPv4 CIDR blocks for RDP access to the Bastion instance"
+  type        = list(string)
+  default     = []
+}
+
 variable "vm_admin_password" {
   description = "Admin password for the VM."
   type        = string

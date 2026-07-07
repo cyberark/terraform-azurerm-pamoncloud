@@ -6,11 +6,9 @@ resource "azurerm_virtual_machine_extension" "registration_script" {
   type_handler_version       = "1.9"
   auto_upgrade_minor_version = true
 
-  settings = <<SETTINGS
- {
-  "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File \"C://CyberArk//HardeningActivation.ps1\" -PrimaryOrDR DR -PrimaryVaultIP ${var.primary_vault_private_ip} -DRPassword ${var.vault_dr_password} -VKMName ${resource.azurerm_key_vault.vault_dr_key_vault.name} -Secret ${var.vault_dr_secret}"
- }
-SETTINGS
+  protected_settings = jsonencode({
+    commandToExecute = "powershell -ExecutionPolicy Unrestricted -File \"C://CyberArk//HardeningActivation.ps1\" -PrimaryOrDR DR -PrimaryVaultIP ${var.primary_vault_private_ip} -DRPassword ${var.vault_dr_password} -VKMName ${resource.azurerm_key_vault.vault_dr_key_vault.name} -Secret ${var.vault_dr_secret}"
+  })
 
   depends_on = [resource.azurerm_virtual_machine.vault_dr_vm, resource.azurerm_key_vault.vault_dr_key_vault]
 }

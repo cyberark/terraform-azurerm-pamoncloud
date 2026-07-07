@@ -25,6 +25,15 @@ locals {
   vaultdr_vm_hostname    = "vault-dr"
   vaultdr_vm_size        = "Standard_D8s_v3"
   vaultdr_key_vault_name = "DRKeyVault"
+
+  # Bastion locals (used when var.deploy_bastion is true):
+  bastion_vm_name         = "PAMonCloud-TF-Bastion"
+  bastion_vm_hostname     = "bastion"
+  bastion_vm_size         = "Standard_D2as_v7"
+  bastion_image_publisher = "MicrosoftWindowsServer"
+  bastion_image_offer     = "WindowsServer"
+  bastion_image_sku       = "2022-datacenter-g2"
+  bastion_image_version   = "latest"
 }
 
 provider "azurerm" {
@@ -44,6 +53,31 @@ module "pam-network" {
   vnet_cidr_peered           = local.vnet_cidr_peered
   users_access_cidr          = local.users_access_cidr
   administrative_access_cidr = local.administrative_access_cidr
+  bastion_access_cidr        = var.bastion_access_cidr
+}
+
+################################################################################
+# bastion Module (optional)
+################################################################################
+module "bastion" {
+  count  = var.deploy_bastion ? 1 : 0
+  source = "../../modules/bastion"
+
+  vm_name             = local.bastion_vm_name
+  vm_hostname         = local.bastion_vm_hostname
+  vm_size             = local.bastion_vm_size
+  resource_group_name = module.pam-network.rg_name
+  location            = module.pam-network.vnet_location.primary
+  availability_zone   = []
+  subnet_id           = module.pam-network.public_subnet_id.primary
+  vm_admin_user       = local.vm_admin_user
+  vm_admin_password   = var.vm_admin_password
+  image_publisher     = local.bastion_image_publisher
+  image_offer         = local.bastion_image_offer
+  image_sku           = local.bastion_image_sku
+  image_version       = local.bastion_image_version
+
+  depends_on = [module.pam-network]
 }
 
 ################################################################################

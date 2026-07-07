@@ -6,11 +6,9 @@ resource "azurerm_virtual_machine_extension" "registration_script" {
   type_handler_version       = "1.9"
   auto_upgrade_minor_version = true
 
-  settings = <<SETTINGS
- {
-  "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File \"C://CyberArk//HardeningActivation.ps1\" -AdminPass ${var.vault_admin_password} -MasterPass ${var.vault_master_password} -PrimaryOrDR Primary -PrimaryVaultIP 1.1.1.1 -DRPassword ${var.vault_dr_password} -LicenseFileName ${var.license_file} -RecPubFileName ${var.recovery_public_key_file} -StorageName ${local.storage_account_name} -ContainerName ${var.container_name} -VKMName ${resource.azurerm_key_vault.primary_vault_key_vault.name} -Secret ${var.vault_dr_secret}"
- }
-SETTINGS
+  protected_settings = jsonencode({
+    commandToExecute = "powershell -ExecutionPolicy Unrestricted -File \"C://CyberArk//HardeningActivation.ps1\" -AdminPass ${var.vault_admin_password} -MasterPass ${var.vault_master_password} -PrimaryOrDR Primary -PrimaryVaultIP 1.1.1.1 -DRPassword ${var.vault_dr_password} -LicenseFileName ${var.license_file} -RecPubFileName ${var.recovery_public_key_file} -StorageName ${local.storage_account_name} -ContainerName ${var.container_name} -VKMName ${resource.azurerm_key_vault.primary_vault_key_vault.name} -Secret ${var.vault_dr_secret}"
+  })
 
   depends_on = [resource.azurerm_virtual_machine.primary_vault_vm, resource.azurerm_key_vault.primary_vault_key_vault, resource.azurerm_role_assignment.storage_account_role_assignment]
 }

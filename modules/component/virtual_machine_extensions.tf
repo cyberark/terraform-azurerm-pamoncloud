@@ -6,11 +6,9 @@ resource "azurerm_virtual_machine_extension" "registration_script" {
   type_handler_version       = local.component_data[var.component].extension_type_handler_version
   auto_upgrade_minor_version = true
 
-  settings = <<SETTINGS
-  {
-    "commandToExecute": "${local.component_data[var.component].command_to_execute}"
-  }
-  SETTINGS
+  protected_settings = jsonencode({
+    commandToExecute = local.component_data[var.component].command_to_execute
+  })
 
   depends_on = [resource.azurerm_virtual_machine.component_vm]
 }

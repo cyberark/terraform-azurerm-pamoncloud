@@ -43,6 +43,12 @@ variable "administrative_access_cidr" {
   }
 }
 
+variable "bastion_access_cidr" {
+  description = "List of allowed IPv4 CIDR blocks for RDP access to the Bastion instance"
+  type        = list(string)
+  default     = []
+}
+
 variable "users_access_cidr" {
   description = "Allowed IPv4 address range for users access to CyberArk components"
   type        = string

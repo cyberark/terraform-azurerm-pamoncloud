@@ -1,6 +1,17 @@
 # CyberArk PAMonCloud Terraform Package Release Notes
 The PAMonCloud Terraform package includes CyberArk PAM product implementations, delivered as Terraform modules and examples to automate deployment on Azure. This solution provides enhanced flexibility and scalability for deploying core PAM components and associated infrastructure.
 
+## [PAMonCloud Terraform on Azure v15.2] (07.07.2026)
+
+### Added
+- New `bastion` module for deploying a Bastion VM, integrated into the complete-PAM examples with related variables, outputs, and `pam_network` security rules.
+
+### Changed
+- Updated Terraform version constraints to support versions 1.9.8 through 1.13.5 across all modules and examples.
+
+### Security
+- Moved Custom Script Extension `commandToExecute` to the encrypted `protected_settings` block in the `vault`, `vault_dr`, and `component` modules.
+
 ## [PAMonCloud Terraform on Azure v15.0] (15.12.2025)
 
 ### Removed
