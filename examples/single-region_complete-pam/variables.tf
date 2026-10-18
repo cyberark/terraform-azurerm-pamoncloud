@@ -45,12 +45,6 @@ variable "vault_image_id" {
   default     = ""
 }
 
-variable "vault_dr_image_id" {
-  description = "Image ID to use for the VM deployment."
-  type        = string
-  default     = ""
-}
-
 variable "pvwa_image_id" {
   description = "Image ID to use for the VM deployment."
   type        = string
