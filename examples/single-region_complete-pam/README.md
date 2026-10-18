@@ -59,7 +59,6 @@ Note that this example creates resources which can cost money. Run `terraform de
 | <a name="input_storage_account_id"></a> [storage\_account\_id](#input\_storage\_account\_id) | The resource id of the storage account. |
 | <a name="input_container_name"></a> [container\_name](#input\_container\_name) | The container name which hosts the Vault license and recovery key . |
 | <a name="input_vault_image_id"></a> [vault\_image\_id](#input\_vault\_image\_id) | The Vault image ID . |
-| <a name="input_vault_dr_image_id"></a> [vault\_dr\_image\_id](#input\_vault\_dr\_image\_id) | The Vault DR image ID . |
 | <a name="input_pvwa_image_id"></a> [pvwa\_image\_id](#input\_pvwa\_image\_id) | The PVWA image ID . |
 | <a name="input_cpm_image_id"></a> [cpm\_image\_id](#input\_cpm\_image\_id) | The CPM image ID . |
 | <a name="input_psm_image_id"></a> [psm\_image\_id](#input\_psm\_image\_id) | The PSM image ID . |
